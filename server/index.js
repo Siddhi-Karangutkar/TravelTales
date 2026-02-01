@@ -266,7 +266,7 @@ if (process.env.NODE_ENV !== 'production') {
         console.log(`Server running on http://localhost:${PORT}`);
     }).on('error', (err) => {
         if (err.code === 'EADDRINUSE') {
-            console.error(`Port ${PORT} is already in use. Please kill the process or use a different port.`);
+            console.error(`Port ${PORT} is already in use.`);
             process.exit(1);
         } else {
             console.error("Server error:", err);

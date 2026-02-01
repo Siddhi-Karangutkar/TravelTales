@@ -14,7 +14,7 @@ const FeedbackPage = () => {
 
     const fetchFeedbacks = async () => {
         try {
-            const res = await fetch('http://localhost:5005/api/feedbacks');
+            const res = await fetch('/api/feedbacks');
             const data = await res.json();
             if (data.success) {
                 setFeedbacks(data.feedbacks);
@@ -26,7 +26,7 @@ const FeedbackPage = () => {
 
     const deleteFeedback = async (id) => {
         try {
-            await fetch(`http://localhost:5005/api/feedbacks/${id}`, { method: 'DELETE' });
+            await fetch(`/api/feedbacks/${id}`, { method: 'DELETE' });
             setFeedbacks(feedbacks.filter(f => f.id !== id));
         } catch (e) {
             console.error("Failed to delete feedback", e);
@@ -43,7 +43,7 @@ const FeedbackPage = () => {
         setAnalysis(null);
 
         try {
-            const response = await fetch('http://localhost:5005/api/analyze-feedback', {
+            const response = await fetch('/api/analyze-feedback', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

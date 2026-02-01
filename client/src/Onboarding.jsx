@@ -131,7 +131,7 @@ const Onboarding = () => {
 
         setIsLoading(true);
         try {
-            const response = await fetch('http://localhost:5005/api/generate-plan', {
+            const response = await fetch('/api/generate-plan', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ ...formData, language })

@@ -87,7 +87,7 @@ const MapExploration = ({ plan }) => {
             }
             setIsSearching(true);
             try {
-                const response = await fetch(`http://localhost:5005/api/geocode?q=${encodeURIComponent(plan.destination)}`);
+                const response = await fetch(`/api/geocode?q=${encodeURIComponent(plan.destination)}`);
                 const data = await response.json();
                 if (data && data.length > 0) {
                     const { lat, lon } = data[0];

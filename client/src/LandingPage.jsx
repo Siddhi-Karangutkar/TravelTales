@@ -13,7 +13,7 @@ const LandingPage = () => {
     React.useEffect(() => {
         const fetchCommunityFeedbacks = async () => {
             try {
-                const res = await fetch('http://localhost:5005/api/feedbacks');
+                const res = await fetch('/api/feedbacks');
                 const data = await res.json();
                 if (data.success) {
                     setCommunityFeedbacks(data.feedbacks.slice(0, 3)); // Show top 3

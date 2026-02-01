@@ -25,7 +25,7 @@ const SavedItinerariesPage = () => {
     const fetchItineraries = async () => {
         setLoading(true);
         try {
-            const response = await fetch('http://localhost:5005/api/itineraries', {
+            const response = await fetch('/api/itineraries', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -48,7 +48,7 @@ const SavedItinerariesPage = () => {
         if (!window.confirm('Are you sure you want to delete this itinerary?')) return;
 
         try {
-            const response = await fetch(`http://localhost:5005/api/itineraries/${id}`, {
+            const response = await fetch(`/api/itineraries/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`

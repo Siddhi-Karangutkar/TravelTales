@@ -85,7 +85,7 @@ const TripPlan = () => {
 
         setIsSaving(true);
         try {
-            const response = await fetch('http://localhost:5005/api/itineraries', {
+            const response = await fetch('/api/itineraries', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

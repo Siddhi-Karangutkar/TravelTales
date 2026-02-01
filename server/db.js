@@ -1,38 +1,25 @@
-const { Pool, Client } = require('pg');
+const { Pool } = require('pg');
 require('dotenv').config();
 
-const dbConfig = {
-    user: process.env.DB_USER || 'postgres',
-    host: process.env.DB_HOST || 'localhost',
-    password: process.env.DB_PASSWORD,
-    port: process.env.DB_PORT || 5432,
-};
-
-const dbName = process.env.DB_NAME || 'traveltales';
+const isProduction = process.env.NODE_ENV === 'production' || !!process.env.DATABASE_URL;
 
 const pool = new Pool({
-    ...dbConfig,
-    database: dbName,
+    connectionString: process.env.DATABASE_URL,
+    // Support local individual params as fallback
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
+    database: process.env.DB_NAME,
+    password: process.env.DB_PASSWORD,
+    port: process.env.DB_PORT,
+    ssl: isProduction ? { rejectUnauthorized: false } : false
 });
 
 // Test connection and initialize tables
 const initDB = async () => {
     try {
-        // 1. Ensure the database exists
-        const client = new Client({ ...dbConfig, database: 'postgres' });
-        await client.connect();
-
-        const res = await client.query(`SELECT 1 FROM pg_database WHERE datname = $1`, [dbName]);
-        if (res.rowCount === 0) {
-            console.log(`Creating database "${dbName}"...`);
-            await client.query(`CREATE DATABASE ${dbName}`);
-            console.log(`✅ Database "${dbName}" created`);
-        }
-        await client.end();
-
-        // 2. Initialize tables using the pool
-        await pool.query('SELECT NOW()');
-        console.log('✅ PostgreSQL Connected');
+        // Just verify connection
+        const now = await pool.query('SELECT NOW()');
+        console.log('✅ PostgreSQL Connected:', now.rows[0].now);
 
         // Create Users table
         await pool.query(`
@@ -61,6 +48,7 @@ const initDB = async () => {
         console.log('✅ Database tables initialized');
     } catch (err) {
         console.error('❌ Database initialization error:', err);
+        // Don't crash the whole process in serverless env, but log it clearly
     }
 };
 
