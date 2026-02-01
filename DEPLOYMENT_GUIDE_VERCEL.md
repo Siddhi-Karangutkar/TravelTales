@@ -43,6 +43,18 @@ Vercel now uses **Marketplace Integrations** for databases. The official Vercel 
 
 ---
 
+## Part 3.1: Build & Development Settings
+If Vercel asks for specific build commands (it usually auto-detects, but just in case):
+
+-   **Build Command**: `cd client && npm install && npm run build`
+-   **Output Directory**: `client/dist`
+-   **Install Command**: `npm install` (at root, or Vercel will handle it)
+
+> [!TIP]
+> Since we have a `vercel.json` at the root, Vercel will use the instructions there to build the server (Serverless Functions) and the client (Static Build).
+
+---
+
 ## Part 4: Finalizing Configuration
 
 1.  After deployment, Vercel will build both the Client (Vite) and Server (Node.js).
