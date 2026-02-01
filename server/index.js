@@ -280,10 +280,6 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = app;
 
-server.on('error', (err) => {
-    console.error("SERVER ERROR:", err);
-});
-
 // Keeping the process alive explicitly if needed (though listen should do it)
 process.on('uncaughtException', (err) => {
     console.error('Uncaught Exception:', err);
