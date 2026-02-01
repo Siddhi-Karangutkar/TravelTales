@@ -19,7 +19,15 @@
             "destination": "/server/index.js"
         },
         {
-            "source": "/((?!api/).*)",
+            "source": "/assets/(.*)",
+            "destination": "/client/assets/$1"
+        },
+        {
+            "source": "/vite.svg",
+            "destination": "/client/vite.svg"
+        },
+        {
+            "source": "/((?!api/|assets/|vite.svg).*)",
             "destination": "/client/index.html"
         }
     ]
