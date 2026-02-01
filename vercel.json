@@ -22,19 +22,5 @@
             "source": "/(.*)",
             "destination": "/client/index.html"
         }
-    ],
-    "routes": [
-        {
-            "src": "/api/(.*)",
-            "dest": "/server/index.js"
-        },
-        {
-            "src": "/assets/(.*)",
-            "dest": "/client/dist/assets/$1"
-        },
-        {
-            "src": "/(.*)",
-            "dest": "/client/dist/index.html"
-        }
     ]
 }

@@ -11,15 +11,19 @@ This guide covers deploying the Frontend, Backend, and Database using Vercel.
 
 ---
 
-## Part 2: Database Setup (Vercel Postgres)
-Since Vercel is serverless, we need a cloud database. Vercel integrates seamlessly with Vercel Postgres.
+## Part 2: Database Setup (Vercel Marketplace / Neon)
+Vercel now uses **Marketplace Integrations** for databases. The official Vercel Postgres is powered by **Neon**.
 
-1.  Go to your Vercel Dashboard -> **Storage**.
-2.  Click **Create Database** -> Select **Postgres**.
-3.  Name it `traveltales-db` and select the region (closest to you, e.g., `us-east-1` or `ap-south-1`).
-4.  Once created, go to the **.env.local** tab in the database view.
-5.  **Copy the variables**: `POSTGRES_URL`, `POSTGRES_USER`, `POSTGRES_HOST`, `POSTGRES_PASSWORD`, `POSTGRES_DATABASE`.
-    *   *You will need these in the next step.*
+1.  Go to your Vercel Project Dashboard.
+2.  Click on the **Storage** tab.
+3.  If you don't see "Create Database", click **Connect Store** or **Browse Marketplace**.
+4.  Search for **"Vercel Postgres"** (or **Neon**) and click **Install/Integrate**.
+5.  Select your **TravelTales** project and region.
+6.  Once created, go to the **.env.local** tab in the database view.
+7.  **Copy the variables**: `POSTGRES_URL`, `POSTGRES_USER`, `POSTGRES_HOST`, `POSTGRES_PASSWORD`, `POSTGRES_DATABASE`.
+    *   **Where to find it?** inside the Storage tab, look for a sub-menu called **".env.local"**, **"Quickstart"**, or **"Connection Details"**. You will see a button to "Show Secret" or "Copy Snippet".
+
+> **Alternative**: If you still can't find it, go directly to [vercel.com/marketplace/vercel-postgres](https://vercel.com/marketplace/vercel-postgres) and click "Add Integration".
 
 ---
 
